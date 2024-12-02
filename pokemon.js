@@ -12,7 +12,8 @@ let allPokemons = []; // array to store all our pokemons
 fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`)
 .then((response) => response.json()) // we get a response and turn that into JSON
 .then((data) => { // with the data we get, we put that into our allPokemons array
-    allPokemons = data.results;
+    allPokemons = data.results; 
+    // once we fetched the data, we display the pokemons
     displayPokemons(allPokemons);
 });
 
@@ -73,3 +74,37 @@ function displayPokemons(pokemon) {
 
     });
 }
+
+searchInput.addEventListener("keyup", handleSearch);
+
+function handleSearch() {
+    const searchTerm = searchInput.value.toLowerCase(); // turns all inputted keys into lowercase, edge case
+    let filteredPokemons;
+
+    //Filter By
+    // if Number radio button is checked, filter
+    if (numberFilter.checked) {
+        filteredPokemons = allPokemons.filter((pokemon) => {
+            const pokemonID = pokemon.url.split("/")[6];
+            return pokemonID.startsWith(searchTerm);
+        });
+    // if Name radio button is checked, filter
+    } else if (nameFilter.checked){
+        filteredPokemons = allPokemons.filter((pokemon) => 
+            pokemon.name.toLowerCase().startsWith(searchTerm)
+        );
+    // if nothing is checked, filter nothing, show all Pokemons
+    } else {
+        filteredPokemons = allPokemons;
+    }
+
+    displayPokemons(filteredPokemons); // display Pokemons based on the filter
+
+    // if nothing is found, we display not found message
+    if (filteredPokemons.length === 0) {
+        notFoundMessage.style.display = "block";
+    } else {
+        notFoundMessage.style.display = "none";
+    }
+}
+
