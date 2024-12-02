@@ -13,6 +13,7 @@ fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`)
 .then((response) => response.json()) // we get a response and turn that into JSON
 .then((data) => { // with the data we get, we put that into our allPokemons array
     allPokemons = data.results;
+    displayPokemons(allPokemons);
 });
 
 // there is a few milliseconds where the api is being retrieved,
@@ -37,4 +38,38 @@ async function fetchPokemonDataBeforeRedirect(id) {
     } catch (error) {
         console.error("Failed to fetch Pokemon data before redirect");
     }
+}
+
+function displayPokemons(pokemon) {
+    listWrapper.innerHTML = ""; // everytime we fetch we clear the innerHTML
+    pokemon.forEach((pokemon) => {
+        const pokemonID = pokemon.url.split("/")[6]; // when we split the url, after the 6th slash is the specifc pokemon we are trying to get
+
+        //creating html element in our js
+        const listItem = document.createElement("div");
+        // listItem is the card for each pokemon
+        listItem.className = "list-item";
+        listItem.innerHTML = `
+            <div class="number-wrap">
+                <p class="caption-fonts">#${pokemonID}</p>
+            </div>
+            <div class="img-wrap">
+                <img src="https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/other/dream-world/${pokemonID}.svg" alt="${pokemon.name}" />
+            </div>
+            <div class="name-wrap">
+                <p class="body3-fonts">#${pokemon.name}</p>
+            </div>
+        `;
+
+    // when card is clicked, it will call our async function and that will redirect us to the details page of that pokemon
+    listItem.addEventListener("click", async () => {
+        const success = await fetchPokemonDataBeforeRedirect(pokemonID);
+        if (success) {
+            window.location.href = `./detail.html?id=${pokemonID}`
+        }
+    })
+    // adding listItems to listWrapper
+    listWrapper.appendChild(listItem);
+
+    });
 }
