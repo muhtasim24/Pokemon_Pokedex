@@ -108,3 +108,12 @@ function handleSearch() {
     }
 }
 
+const closeButton = document.querySelector(".search-close-icon");
+closeButton.addEventListener("click" , clearSearch);
+
+// when we click X, it will delete search input, and go back to display ALL pokemons, no filter
+function clearSearch() {
+    searchInput.value = "";
+    displayPokemons(allPokemons);
+    notFoundMessage.style.display = "none";
+}
