@@ -1,4 +1,4 @@
-const MAX_POKEMON = 151; // # of pokemons we want to retrieve
+const MAX_POKEMON = 493; // # of pokemons we want to retrieve
 // referencing html elements, and be used as constants so we can use them in this file
 const listWrapper = document.querySelector(".list-wrapper");
 const searchInput = document.querySelector("#search-input");
