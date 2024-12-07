@@ -29,6 +29,7 @@ nationalButton.addEventListener("click", () => {
     displayPokemons(allPokemons);
 });
 
+// kanto pressed, display pokemons 1 - 151
 kantoButton.addEventListener("click", () => {
     const kantoPokemons = allPokemons.filter((pokemon) => {
         const pokemonID = parseInt(pokemon.url.split('/')[6]);
@@ -36,6 +37,33 @@ kantoButton.addEventListener("click", () => {
     });
     displayPokemons(kantoPokemons);
 });
+
+// jhoto pressed, display pokemons 152 - 251
+jhotoButton.addEventListener("click", () => {
+    const jhotoPokemons = allPokemons.filter((pokemon) => {
+        const pokemonID = parseInt(pokemon.url.split('/')[6]);
+        return pokemonID >= 152 && pokemonID <= 251;
+    });
+    displayPokemons(jhotoPokemons);
+});
+
+// hoenn pressed, display pokemons 252 - 386
+hoennButton.addEventListener("click", () => {
+    const hoennPokemons = allPokemons.filter((pokemon) => {
+        const pokemonID = parseInt(pokemon.url.split('/')[6]);
+        return pokemonID >= 252 && pokemonID <= 386;
+    });
+    displayPokemons(hoennPokemons);
+});
+
+// sinnoh pressed, display pokemons 387 - 493
+sinnohButton.addEventListener("click", () => {
+    const sinnohPokemons = allPokemons.filter((pokemon) => {
+        const pokemonID = parseInt(pokemon.url.split('/')[6]);
+        return pokemonID >= 387 && pokemonID <= 493;
+    });
+    displayPokemons(sinnohPokemons);
+})
 
 // there is a few milliseconds where the api is being retrieved,
 // so if we try to call a function where we try to use the data, or use the data at all, within the time where the data from an api is Still being retrived, we will get an error, since all the data is not retrived yet
