@@ -115,8 +115,16 @@ body {
 
 .logo-wrapper > h1 {
   color: var(--grayscale-white);
+  margin-left: 3rem;
+  font-weight: 600;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
 }
 
+.logo-wrapper > h1:hover{
+  color: var(--grayscale-dark);
+  border-bottom: 3px solid var(--grayscale-dark);
+}
 .logo-wrapper > img {
   margin-right: 16px;
 }

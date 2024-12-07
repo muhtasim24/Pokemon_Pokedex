@@ -1,10 +1,17 @@
-const MAX_POKEMON = 493; // # of pokemons we want to retrieve
 // referencing html elements, and be used as constants so we can use them in this file
 const listWrapper = document.querySelector(".list-wrapper");
 const searchInput = document.querySelector("#search-input");
 const numberFilter = document.querySelector("#number");
 const nameFilter = document.querySelector("#name");
 const notFoundMessage = document.querySelector(".not-found-message");
+
+const MAX_POKEMON = 493; // # of pokemons we want to retrieve
+const nationalButton = document.querySelector('#national');
+const kantoButton = document.querySelector('#kanto');
+const hoennButton = document.querySelector('#hoenn');
+const jhotoButton = document.querySelector('#jhoto');
+const sinnohButton = document.querySelector('#sinnoh');
+
 
 let allPokemons = []; // array to store all our pokemons
 
@@ -15,6 +22,19 @@ fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`)
     allPokemons = data.results; 
     // once we fetched the data, we display the pokemons
     displayPokemons(allPokemons);
+});
+
+// if National Clicked, display All
+nationalButton.addEventListener("click", () => {
+    displayPokemons(allPokemons);
+});
+
+kantoButton.addEventListener("click", () => {
+    const kantoPokemons = allPokemons.filter((pokemon) => {
+        const pokemonID = parseInt(pokemon.url.split('/')[6]);
+        return pokemonID >= 1 && pokemonID <= 151;
+    });
+    displayPokemons(kantoPokemons);
 });
 
 // there is a few milliseconds where the api is being retrieved,
