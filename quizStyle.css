@@ -1,95 +1,109 @@
 @import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
 
 
-:root {
-    --white-color: #fff;
-    --button-correct: #5aae76;
-    --button-wrong: #e13e3e;
-    --button-hover: #aaa;
-}
-
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+}
+
+main {
+    position: relative;
+    width: 575px;
+    background-image: url('https://res.cloudinary.com/dzynqn10l/image/upload/v1633196203/Msc/pokemon-bg_ig4uv3.jpg');
+    background-size: 110%;
+    background-repeat: no-repeat;
+}
+
+#pokemon-container{
+    height: 355px;
+}
+
+#bg-overlay {
+    color: #fff;
+    position: absolute;
+    background-color: #dd1716;
+    right: 25px;
+    width: 170px;
+    height: 170px;
+    top:60px;
+    border-radius: 50%;
+}
+
+#text-overlay {
+    position: absolute;
+    right: 20px;
+    top: 100px;
+    background-color: #ffcb02;
+    border: solid 7px #2c70ae;
+    padding: 20px;
+    min-width: 130px;
+    font-family: 'Bangers', Arial, sans-serif;
+    font-size: 36px;
+    letter-spacing: 1.2px;
+    color: #3ea2fe;
+    text-shadow: 2px 2px #1d366c;
+    border-radius: 20px;
     text-align: center;
-    min-width: 100vh;
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #3b4cca 0%,#ff3535 100%);
-    color: var(--white-color);
 }
 
-.container{
-    display: flex;
-    max-width: 300px;
-    flex-direction: column;
-    gap: 50px;
-}
-
-.header{
-    margin: 0;
-    font-family: "Rammetto One", sans-serif;
-    font-size: 24px;
-    font-weight: 400;
-    height: 100px;
-}
-
-#pokemonImage {
-    height: 200px;
-    max-width: 100%;
-}
-
-.options-container {
-    display: flex;
-    flex-wrap: wrap;
+#controls {
+    position: relative;
+    padding: 20px 40px;
 }
 
 button {
-    height: 52px;
-    margin: 10px;
-    width: calc(50% - 20px);
-    font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    font-size: 17px;
-    text-transform: capitalize;
-    cursor: pointer;
-    background-color: var(--white-color);
+    background: #fff;
     border: none;
-    border-radius: 5px;
+    color: #3e7ae7;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 36px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 10px 1px;
+    cursor: pointer;
+    transition: all .2s ease-out;
 }
 
 button:hover{
-    background-color: var(--button-hover);
-    color: var(--white-color);
+    box-shadow: 0px 4px 10px 4px;
+    background-color: #fff6d1;
 }
 
-/*going to add the correct class to the button when its correct*/
+button.correct,
+button.incorrect{
+    color: #d9fcd9;
+    box-shadow: none;
+}
+
 button.correct {
-    background-color: var(--button-correct);
-    color: var(--white-color);
-}
-/*going to add the wrong class to the button when its wrong*/
-button.wrong {
-    background-color: var(--button-wrong);
-    color: var(--white-color);
+    background: #0dff0d;
 }
 
-#loadingContainer {
-    height: 500px;
+button.incorrect{
+    background: #ea2e25;
 }
 
-#loadingIcon {
-    width: 200px;
-    height: 200px;
-    position: relative;
-    top: 20%;
+#play{
+    position: absolute;
+    top: -56px;
+    left: 39px;
 }
 
-#points{
-    margin: 0;
-    font-size: 24px;
-    font-weight: 700;
-    text-align: center;
+#pokeball {
+    width: 78px;
+    margin: 144px 0 0 144px;
+    position: absolute;
+    /* visibility: hidden; */
+    animation: wiggle 1.35s infinite;
+}
+
+
+@keyframes wiggle {
+    0% { transform: rotate(0deg); }
+    80% { transform: rotate(0deg); }
+    85% { transform: rotate(6deg); }
+    95% { transform: rotate(-6deg); }
+    100% { transform: rotate(0deg); }
 }

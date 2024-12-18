@@ -6,28 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Who's that Pokemon?</title>
     <link rel="stylesheet" href="quizStyle.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <link rel="icon" href="./assets/favicon.png" type="image/x-icon" />
     <script src="quiz.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h4 id="result" class="header">Who's that pokemon?</h4>
-        <!--Leaving image empty because it is going to be filled with the images of the pokemons from the api--->
-        <img id="pokemonImage" alt="Pokemon Image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/132.svg"
-        />
-        <div id="options" class="options-container">
-            <button>ditto</button>
-            <button>voltrob</button>
-            <button>mr-mime</button>
-            <button>nidorino</button>
-        </div> 
-        <h4 id="points">
-            Points: <span id="pointsValue">0</span>/<span id="totalCount">0</span>
-        </h4>
-    </div>
+    <main>
+        <div id="pokemon-container">
+            <img id="pokeball" src="https://res.cloudinary.com/dzynqn10l/image/upload/v1633196610/Msc/pokeball_zeoqii.webp">
+            <img id="pokemon-image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D">
+        </div>
+        <div id="answer">
+            <div id="bg-overlay"></div>
+            <div id="text-overlay"></div>
+        </div>
 
-    <div id="loadingContainer" class="loading-container">
-        <img id="loadingIcon" src="./assets/loading_icon.gif" alt="loading..." />
-    </div>
+        <section id="controls">
+            <button id="play">Play</button>
+            <div id="choices"></div> <!--The choices will be populating with JS using innerHTML-->
+        </section>
+            
+            <!-- <h4 id="points">
+                Points: <span id="pointsValue">0</span>/<span id="totalCount">0</span>
+            </h4>
+        </div>
+
+        <div id="loadingContainer" class="loading-container">
+            <img id="loadingIcon" src="./assets/loading_icon.gif" alt="loading..." />
+        </div> -->
+    </main>
 </body>
 </html>
