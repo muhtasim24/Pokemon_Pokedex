@@ -10,8 +10,14 @@ window.getPokeData = async function() {
     const [ firstPokemon ] = pokemonChoices; // get first item in the pokemonChoices array
     const number = getPokemonNumber(firstPokemon);
     const image = getPokemonImage(number);
-    console.log(firstPokemon);
-    console.log(image);
+
+    return {
+        pokemonChoices,
+        correct: {
+            image,
+            name: firstPokemon.name
+        }
+    };
 };
 
 async function getPokemon() {

@@ -91,6 +91,29 @@ button.incorrect{
     left: 39px;
 }
 
+main.fetching #pokeball {
+    visibility: hidden;
+}
+
+main.fetching #pokemon-image {
+    visibility: hidden;
+    display: none;
+}
+
+main.revealed #pokemon-image {
+    filter: none; 
+}
+
+main.revealed #answer{
+    display: block;
+}
+
+#choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 12px;
+}
+
 #pokeball {
     width: 78px;
     margin: 144px 0 0 144px;
