@@ -12,7 +12,7 @@ window.getPokeData = async function() {
     const image = getPokemonImage(number);
 
     return {
-        pokemonChoices,
+        pokemonChoices: shuffle(pokemonChoices),
         correct: {
             image,
             name: firstPokemon.name
@@ -21,7 +21,7 @@ window.getPokeData = async function() {
 };
 
 async function getPokemon() {
-    const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
+    const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=493');
     const pokemon = await res.json(); 
 
     return pokemon.results;
