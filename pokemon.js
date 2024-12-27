@@ -159,6 +159,22 @@ function handleSearch() {
 const closeButton = document.querySelector(".search-close-icon");
 closeButton.addEventListener("click" , clearSearch);
 
+const viewType = document.getElementById('view-types');
+// on change of the event, we take the value of the change, and display the pokemons that have that type
+viewType.addEventListener("change", (e) => {
+    switch (e.target.value) {
+        case "fire":
+            console.log("FIRE IS SELECTED");
+            const fireTypes = allPokemons.filter((pokemon) => {
+                const pokemonType = pokemon.types[0].type.name
+                return pokemonType == 'Fire';
+            });
+            displayPokemons(fireTypes);
+            break;
+    }
+
+})
+
 // when we click X, it will delete search input, and go back to display ALL pokemons, no filter
 function clearSearch() {
     searchInput.value = "";
