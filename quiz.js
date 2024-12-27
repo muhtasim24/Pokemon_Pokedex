@@ -60,7 +60,7 @@ function revealPokemon() {
 
 function loadVoice() {
     window.speechSynthesis.onvoiceschanged = () => {
-        window.femaleVoice = speechSynthesis.getVoices()[4];
+        window.femaleVoice = speechSynthesis.getVoices()[8];
     }
 }
 
