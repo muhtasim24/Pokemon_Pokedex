@@ -16,6 +16,7 @@ async function fetchData() {
     console.log(gameData);
     showSilhouette();
     displayChoices();
+    speakQuestion();
 }
 
 function showSilhouette() {
@@ -39,10 +40,33 @@ function addAnswerHandler() {
         
         e.target.classList.add(resultClass);
         revealPokemon();
+        speakAnswer();
     })
 }
 
 function revealPokemon() {
     main.classList.add('revealed');
     textOverlay.textContent = `${gameData.correct.name}!`;
+}
+
+function loadVoice() {
+    window.speechSynthesis.onvoiceschanged = () => {
+        window.femaleVoice = speechSynthesis.getVoices()[4];
+    }
+}
+
+function speakAnswer() {
+    const utterance = new SpeechSynthesisUtterance(`It'ssss ${gameData.correct.name}`);
+    utterance.voice = window.femaleVoice;
+    utterance.pitch = 0.9;
+    utterance.rate = 0.60;
+    speechSynthesis.speak(utterance);
+}
+
+function speakQuestion() {
+    const utterance = new SpeechSynthesisUtterance(`Who's that Pokemon!`);
+    utterance.voice = window.femaleVoice;
+    utterance.pitch = 0.9;
+    utterance.rate = 0.60;
+    speechSynthesis.speak(utterance);
 }
