@@ -20,9 +20,12 @@ fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`)
 .then((response) => response.json()) // we get a response and turn that into JSON
 .then((data) => { // with the data we get, we put that into our allPokemons array
     allPokemons = data.results; 
+    console.log(allPokemons);
     // once we fetched the data, we display the pokemons
     displayPokemons(allPokemons);
 });
+
+
 
 // if National Clicked, display All
 nationalButton.addEventListener("click", () => {
@@ -161,19 +164,11 @@ closeButton.addEventListener("click" , clearSearch);
 
 const viewType = document.getElementById('view-types');
 // on change of the event, we take the value of the change, and display the pokemons that have that type
-viewType.addEventListener("change", (e) => {
-    switch (e.target.value) {
-        case "fire":
-            console.log("FIRE IS SELECTED");
-            const fireTypes = allPokemons.filter((pokemon) => {
-                const pokemonType = pokemon.types[0].type.name
-                return pokemonType == 'Fire';
-            });
-            displayPokemons(fireTypes);
-            break;
-    }
 
-})
+async function displayTypes(type){
+    console.log(type);
+}
+viewType.addEventListener("change", (e) => displayTypes(e.target.value));
 
 // when we click X, it will delete search input, and go back to display ALL pokemons, no filter
 function clearSearch() {

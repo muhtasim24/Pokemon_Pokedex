@@ -24,6 +24,9 @@ async function loadPokemon(id) {
         ),
     ]);
 
+    console.log(pokemon);
+    console.log(pokemonSpecies);
+
     const abilitiesWrapper = document.querySelector(".pokemon-detail-wrap .pokemon-detail.move");
     abilitiesWrapper.innerHTML = ""; // clearing it if we are on a previous pokemon
 
@@ -109,6 +112,7 @@ function setTypeBackgroundColor(pokemon) {
     const mainType = pokemon.types[0].type.name; // get the type of the pokemon
     const color = typeColors[mainType]; // use that type to access the color from our typeColors array
 
+
     if (!color) {
         console.warn(`Color not defined for type: ${mainType}`);
     }
@@ -117,6 +121,7 @@ function setTypeBackgroundColor(pokemon) {
     setElementStyles([detailMainElement], "backgroundColor", color);
     setElementStyles([detailMainElement], "borderColor", color);
     setElementStyles(document.querySelectorAll(".power-wrapper > p"), "backgroundColor", color);
+    setElementStyles(document.querySelectorAll(".weakness-wrap > p"), "backgroundColor", color);
     setElementStyles(document.querySelectorAll(".stats-wrap p.stats"), "color", color);
     setElementStyles(document.querySelectorAll(".stats-wrap .progress-bar"), "color", color);
 
@@ -146,6 +151,42 @@ function createAndAppendElement(parent, tag, options = {}) {
     parent.appendChild(element)
 
     return element;
+}
+
+const weakness = {
+    normal: ["Fighting"],
+    fire: ["Water", "Rock", "Ground"],
+    water: ['Grass', 'Electric'],
+    grass: ["Fire", "Flying"],
+    electric: ["Ground"],
+    ice: ["Fire", "Fighting", "Rock", "Steel"],
+    fighting: ["Flying", 'Psychic'],
+    poison: ["Ground", "Psychic"],
+    ground: ["Grass", 'Ice', 'Water'],
+    flying: ['Electric', 'Rock', 'Ice'],
+    psychic: ["Bug", "Dark", "Ghost"],
+    bug: ['Fire', 'Flying', 'Rock'],
+    rock: ["Fighting", "Grass", "Ground", "Steel", "Water"],
+    ghost: ['Dark', "Ghost"],
+    dragon: ['Dragon', 'Ice'],
+    steel: ["Fighting", "Fire", "Ground"],
+    dark: ['Bug', 'Fighting'],
+}
+function weakAgainst(types) {
+    console.log(types);
+
+    const weaknessWrapper = document.querySelector(".weakness-wrap");
+    weaknessWrapper.innerHTML = "";
+    // for each type
+        
+        types.forEach(({ type }) => {
+            createAndAppendElement(weaknessWrapper, "p", {
+            className:`body3-fonts type ${type.name}`,
+            textContent: weakness[type.name][0], 
+        });
+    });
+    // setElementStyles(document.querySelectorAll(".power-wrapper > p"), "backgroundColor", color);
+
 }
 
 function displayPokemonDetails(pokemon) {
@@ -220,7 +261,9 @@ function displayPokemonDetails(pokemon) {
         });
     });
 
+    weakAgainst(types);
     setTypeBackgroundColor(pokemon);
+
 }
 
 function getEnglishFlavorText(pokemonSpecies) {
